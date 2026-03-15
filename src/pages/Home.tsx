@@ -2,12 +2,6 @@ import { Link } from 'react-router'
 import { supabase } from '../lib/supabase'
 import { useEffect, useState } from 'react'
 
-function formatMatchDate(isoDate: string) {
-  const date = new Date(isoDate)
-  date.setHours(date.getHours() + 8)
-  return date.toLocaleString('zh-CN', { hour12: false })
-}
-
 export default function Home() {
   const [latestNews, setLatestNews] = useState<any[]>([])
   const [upcomingMatch, setUpcomingMatch] = useState<any>(null)
@@ -59,8 +53,7 @@ export default function Home() {
     // 倒计时
     const timer = setInterval(() => {
       if (upcomingMatch) {
-        const matchDate = new Date(upcomingMatch.match_date).getTime() + 8*60*60*1000
-      const diff = matchDate - Date.now()
+        const diff = new Date(upcomingMatch.match_date).getTime() - Date.now()
         if (diff > 0) {
           const days = Math.floor(diff / (1000 * 60 * 60 * 24))
           const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -81,6 +74,14 @@ export default function Home() {
       '铁杆会员': 'bg-gradient-to-r from-red-600 to-red-800',
     }
     return colors[level] || 'bg-gray-400'
+  }
+
+  // 格式化日期时间，直接显示数据库原始值
+  const formatDateTime = (iso: string) => {
+    if (!iso) return ''
+    const dt = iso.replace('+00:00', '').replace('Z', '')
+    const [date, time] = dt.split('T')
+    return `${date} ${time.slice(0,5)}`
   }
 
   return (
@@ -113,7 +114,7 @@ export default function Home() {
               {upcomingMatch ? (
                 <div>
                   <div className="text-3xl font-bold mb-2">河南 VS {upcomingMatch.opponent}</div>
-                  <p className="text-red-200 mb-2">{formatMatchDate(upcomingMatch.match_date)}</p>
+                  <p className="text-red-200 mb-2">{formatDateTime(upcomingMatch.match_date)}</p>
                   <p className="text-red-200">{upcomingMatch.venue}</p>
                   {countdown && (
                     <div className="mt-4 bg-white/20 rounded-lg px-4 py-2 inline-block">
@@ -136,7 +137,7 @@ export default function Home() {
                       ? `河南 ${lastMatch.result}` 
                       : `${lastMatch.opponent} ${lastMatch.result} 河南`}
                   </div>
-                  <p className="text-gray-500">{formatMatchDate(lastMatch.match_date)}</p>
+                  <p className="text-gray-500">{formatDateTime(lastMatch.match_date)}</p>
                   <p className="text-gray-500">{lastMatch.venue}</p>
                 </div>
               ) : (
@@ -165,7 +166,7 @@ export default function Home() {
                   )}
                   <div className="p-3">
                     <h3 className="font-bold text-sm text-gray-800 line-clamp-2 group-hover:text-red-600">{news.title}</h3>
-                    <p className="text-gray-400 text-xs mt-1">{new Date(news.created_at).toLocaleDateString('zh-CN')}</p>
+                    <p className="text-gray-400 text-xs mt-1">{news.created_at?.slice(0,10)}</p>
                   </div>
                 </Link>
               ))}
