@@ -134,8 +134,8 @@ export default function Home() {
                 <div>
                   <div className="text-2xl font-bold mb-2">
                     {lastMatch.is_home 
-                      ? `河南 ${lastMatch.result}` 
-                      : `${lastMatch.opponent} ${lastMatch.result} 河南`}
+                      ? `${lastMatch.opponent} ${lastMatch.result} 河南` 
+                      : `河南 ${lastMatch.result}`}
                   </div>
                   <p className="text-gray-500">{formatDateTime(lastMatch.match_date)}</p>
                   <p className="text-gray-500">{lastMatch.venue}</p>
