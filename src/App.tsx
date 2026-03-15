@@ -7,6 +7,7 @@ import NewsDetail from './pages/NewsDetail'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 import MemberCenter from './pages/MemberCenter'
+import Ranking from './pages/Ranking'
 import Admin from './pages/Admin'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/news" element={<News />} />
             <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/ranking" element={<Ranking />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route 
               path="/member" 
