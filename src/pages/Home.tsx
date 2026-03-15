@@ -124,7 +124,11 @@ export default function Home() {
               <h3 className="text-lg font-bold mb-4 text-gray-800">📊 上一场</h3>
               {lastMatch ? (
                 <div>
-                  <div className="text-2xl font-bold mb-2">河南 {lastMatch.result}</div>
+                  <div className="text-2xl font-bold mb-2">
+                    {lastMatch.is_home 
+                      ? `河南 ${lastMatch.result}` 
+                      : `${lastMatch.opponent} ${lastMatch.result} 河南`}
+                  </div>
                   <p className="text-gray-500">{new Date(lastMatch.match_date).toLocaleDateString('zh-CN')}</p>
                   <p className="text-gray-500">{lastMatch.venue}</p>
                 </div>
