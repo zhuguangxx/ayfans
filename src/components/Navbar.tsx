@@ -21,8 +21,8 @@ export default function Navbar({ user, setUser }: NavbarProps) {
         <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 md:space-x-3">
-            <div className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center">
-              <span className="text-red-600 font-bold text-sm md:text-lg">⚽</span>
+            <div className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center p-1">
+              <img src="https://cdn.hailuoai.com/cdn_upload/20260315/486952873078808579/376823844774741/160334_2dfe/workspace/user_input_files/fd759f2e2bf0f3353e936d9129f2bcf.png" alt="队徽" className="w-full h-full object-contain" />
             </div>
             <span className="font-bold text-sm md:text-lg hidden sm:block">安阳市球迷协会</span>
           </Link>

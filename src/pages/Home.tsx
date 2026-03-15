@@ -83,8 +83,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-6xl mx-auto px-4 text-center">
           <div className="mb-4">
-            <div className="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-2xl">
-              <span className="text-4xl">⚽</span>
+            <div className="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center shadow-2xl p-2">
+              <img src="https://cdn.hailuoai.com/cdn_upload/20260315/486952873078808579/376823844774741/160334_2dfe/workspace/user_input_files/fd759f2e2bf0f3353e936d9129f2bcf.png" alt="队徽" className="w-full h-full object-contain" />
             </div>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold mb-3" style={{ fontFamily: 'serif' }}>安阳市球迷协会</h1>
